@@ -115,20 +115,20 @@ def search_patterns(rulesCurrentCategory, d, originalRules):
                     newRules.append(rule)
 #    print(rulesCurrentCategory,newRules)
     [rulesCurrentCategory.append(r) for r in newRules]
-    print('deleting redundant rules . . . . ')
+    #print('deleting redundant rules . . . . ')
     rules = deleteRedundant(rulesCurrentCategory)
     return rules
 
 def iterate(rulesCurrentCategory,d):
     originalRules = deepcopy(rulesCurrentCategory)
     extractedRules = []
-    rules = search_patterns(rulesCurrentCategory,d, originalRules)
+    rules = search_patterns(rulesCurrentCategory, d, originalRules)
     print('first extracted rules', rules)
     while rules != extractedRules:
         extractedRules = rules
         rules = search_patterns(extractedRules, d, originalRules)
-    print(rules)
-iterate([ [{2},{2},'A'], [{4},{2},'A'], [{2},{3},'A'] ], 1)
+    return rules
+#iterate([ [{2},{2},'A'], [{4},{2},'A'], [{2},{3},'A'] ], 1)
 
 
 

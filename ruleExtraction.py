@@ -1,5 +1,5 @@
 from copy import deepcopy
-
+from searchPatterns import iterate
 def createCategoriesDict(Rules):
     dictionary_of_classes = dict()
     for rule in Rules:
@@ -21,15 +21,13 @@ def getCategory(key,dictionary_of_classes):
             rules_current_class = dictionary_of_classes[key]
     return [rules_current_class, rules_other_classes]
 #-----------------------------------------------------------------------------
-
 def ruleExtraction(Rules,d):
     finalRules = []
     categoriesDict = createCategoriesDict(Rules)
     for category in categoriesDict:
         [rulesCurrentCategory,otherRules] = getCategory(category,categoriesDict) 
-        
-
-
+        rules = iterate(rulesCurrentCategory,d)
+        print(rules)
 
 
 
