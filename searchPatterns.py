@@ -127,6 +127,7 @@ def iterate(rulesCurrentCategory,d):
     while rules != extractedRules:
         extractedRules = rules
         rules = search_patterns(extractedRules, d, originalRules)
+    print(rules)
     return rules
 #iterate([ [{2},{2},'A'], [{4},{2},'A'], [{2},{3},'A'] ], 1)
 
