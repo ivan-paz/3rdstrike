@@ -86,15 +86,32 @@ def contained( rule1, rule2 ):
 #True
 #print(  contained( [{2},{7},'D'],[{2,5},{7},'D']   )   )
 #True
-def deleteRedundant( rules ):
+
+#def deleteRedundant( rules ):
+#    nonRedundant = []
+#    for i in range(0, len(rules)):
+#        redundant = False
+#        rule1 = rules[i]
+#        for j in range(0, len(rules)):
+#            rule2 = rules[j]
+##            print('rule1 rule2',rule1, rule2)
+#            if rule1 != None and rule2 != None and i != j and contained(rule1,rule2) == True:
+#          #      print(rule1,'contained in', rule2)
+#                redundant = True
+#        if redundant == True:
+#            rules[i] = None
+#    [nonRedundant.append(r) for r in rules if r != None]
+#    return nonRedundant
+
+def deleteRedundant( rules ):#more eficient
     nonRedundant = []
     for i in range(0, len(rules)):
         redundant = False
         rule1 = rules[i]
-        for j in range(0, len(rules)):
+        for j in range( i+1, len(rules)):
             rule2 = rules[j]
 #            print('rule1 rule2',rule1, rule2)
-            if rule1 != None and rule2 != None and i != j and contained(rule1,rule2) == True:
+            if rule1 != None and rule2 != None and contained(rule1,rule2) == True:
           #      print(rule1,'contained in', rule2)
                 redundant = True
         if redundant == True:
@@ -122,12 +139,12 @@ def search_patterns(rulesCurrentCategory, d, originalRules):
 def iterate(rulesCurrentCategory,d):
     originalRules = deepcopy(rulesCurrentCategory)
     extractedRules = []
-    rules = search_patterns(rulesCurrentCategory, d, originalRules)
-    print('first extracted rules', rules)
+    rules = search_patterns(rulesCurrentCategory, d, originalRules)#it'll need here rules other categories to compare with when d >= 2
+    print('rules in the first extraction : ', rules)
     while rules != extractedRules:
-        extractedRules = rules
+        extractedRules = deepcopy(rules)#is the deepcopy needed??
         rules = search_patterns(extractedRules, d, originalRules)
-    print(rules)
+        print('rules extracted within the while : ', rules)
     return rules
 #iterate([ [{2},{2},'A'], [{4},{2},'A'], [{2},{3},'A'] ], 1)
 
