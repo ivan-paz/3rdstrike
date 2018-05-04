@@ -1,7 +1,7 @@
 from copy import deepcopy
 import itertools
 #-------------------------------------------------------------
-#    similarity count empty intersections
+#    similarity count empty intersections            
 def similarity(rule1,rule2,d):
     unions = []
     intersections = []
@@ -19,7 +19,8 @@ def similarity(rule1,rule2,d):
         return [True, unions, intersections, indexes]
     else:
         return [False, None, None, None]
-
+#-------------------------------------------------------------
+#    expand r int its one-instance rules
 def expandRule(rule):
     rules = []
     sets = rule[0:-1]
@@ -39,7 +40,9 @@ def expandRule(rule):
 #    print(rules)
     return rules
 #print(expandRule([{1,2,3},{2,3},'A']))
-
+#-------------------------------------------------------------
+#    check if all one-instance rules of a rule exist in the
+#    original rules 
 def allRules(rule, originalRules):
     expand = expandRule(rule)
     suma = 0
@@ -50,7 +53,7 @@ def allRules(rule, originalRules):
         return True
     else:
         return False
-
+#-------------------------------------------------------------
 #    createRules for similarity "count empty intersections"
 def create_rule(rule1, unions, originalRules, d):
     rule = deepcopy(rule1)
@@ -67,7 +70,7 @@ def create_rule(rule1, unions, originalRules, d):
 #            return rule
 #        else:
 #            return False
-
+#--------------------------------------------------------------
 #  True if a rule1 is subset of rule2, False otherwhise
 def contained( rule1, rule2 ):
     #if rule1[-1] == rule2[-1]:
@@ -86,7 +89,7 @@ def contained( rule1, rule2 ):
 #True
 #print(  contained( [{2},{7},'D'],[{2,5},{7},'D']   )   )
 #True
-
+#---------------------------------------------------------------
 #def deleteRedundant( rules ):
 #    nonRedundant = []
 #    for i in range(0, len(rules)):
@@ -102,7 +105,8 @@ def contained( rule1, rule2 ):
 #            rules[i] = None
 #    [nonRedundant.append(r) for r in rules if r != None]
 #    return nonRedundant
-
+#----------------------------------------------------------------
+#    remove redundant rules
 def deleteRedundant( rules ):#more eficient
     nonRedundant = []
     for i in range(0, len(rules)):

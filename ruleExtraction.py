@@ -28,6 +28,7 @@ def ruleExtraction(Rules,d):
         [rulesCurrentCategory,otherRules] = getCategory(category,categoriesDict) 
         rules = iterate(rulesCurrentCategory,d)
         [finalRules.append(rule) for rule in rules]
+    print('-----------------------')
     [print(r) for r in finalRules]
     return finalRules
 
