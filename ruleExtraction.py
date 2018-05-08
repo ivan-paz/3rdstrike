@@ -29,7 +29,7 @@ def ruleExtraction(Rules,d):
         rules = iterate(rulesCurrentCategory,d)
         [finalRules.append(rule) for rule in rules]
     print('-----------------------')
-    [print(r) for r in finalRules]
+    #[print(r) for r in finalRules]
     return finalRules
 
 #Test
