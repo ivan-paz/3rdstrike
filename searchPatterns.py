@@ -53,8 +53,6 @@ def allRules(rule, originalRules):
         return True
     else:
         return False
-
-
 #------------------------------------------
 #
 #               Function
