@@ -53,11 +53,15 @@ def allRules(rule, originalRules):
         return True
     else:
         return False
+
+
+#    THIS IS A COMMENT
+
 #------------------------------------------
 #
 #               Function
 #    generalizationANDcontradictions
-#
+#             
 #------------------------------------------------------------------
 #    Quick and dirty draft without optimization                ----
 #------------------------------------------------------------------
