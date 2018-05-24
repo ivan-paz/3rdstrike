@@ -100,5 +100,7 @@ Rules = [ #test6
 [{6}, {6}, {3}, "a"],
 [{6}, {3}, {3}, "b"]]
 
-ruleExtraction(Rules,1)
+#-     testing d>=2
+Rules = [ [{1},{2},'a'],[{2},{2},'a'],[{2},{3},'a']]#[{1},{3},'b'] ]
+ruleExtraction(Rules,2)
 
