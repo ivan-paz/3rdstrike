@@ -1,7 +1,8 @@
 from copy import deepcopy
 import itertools
 #-------------------------------------------------------------
-#    similarity count empty intersections            
+#                   dis-similarity function
+#       counts the empty intersections between rule1 and rule2            
 def similarity(rule1,rule2,d):
     unions = []
     intersections = []
@@ -16,6 +17,7 @@ def similarity(rule1,rule2,d):
             difference +=1
             indexes.append(i)
     if difference <= d:
+        print('The difference between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
         return [True, unions, intersections, indexes]
     else:
         return [False, None, None, None]
@@ -53,10 +55,6 @@ def allRules(rule, originalRules):
         return True
     else:
         return False
-
-
-#    THIS IS A COMMENT
-
 #------------------------------------------
 #
 #               Function
@@ -76,48 +74,46 @@ def generalizationANDcontradictions(rule,originalRules,otherRules,ratio):
     #originalRulesOtherCategories = []
     #[originalRulesOtherCategories.append(x) for x in originalRules if x[-1]!=rule[-1]]
     #print(originalRulesOtherCategories) 
-    #contradictions
+    # C O N T R A D I C T I O N S
     for r1 in expanded:
         temporalRule =r1[0:-1]
         for r2 in otherRules:
             if temporalRule == r2[0:-1]:
                 return False
-    #generalization
+    # G E N E R A L I Z A T I O N
     numberOfRulesInOriginalRules = 0
     for r1 in expanded:
         if r1 in originalRules:
             numberOfRulesInOriginalRules +=1
     if (numberOfRulesInOriginalRules/len(expanded)) >= ratio:
-        print('returning',rule)
+        print('Enough rules in original rules, returning:',rule)
         return rule
     else:
         return False
 #originalRules = [ [{1},{2},'a'],[{2},{2},'a'],[{2},{3},'a'],[{1},{3},'b'] ]
 #print(generalizationANDcontradictions( [{1,2},{2,3},'a'], originalRules, ratio = 1/2))
 
-
 #-------------------------------------------------------------
 #    createRules for similarity "count empty intersections"
-def create_rule(rule1, unions, originalRules, d,otherRules):
+def create_rule(rule1, unions, originalRules, d, otherRules):
     rule = deepcopy(rule1)
     for i in range(len(rule1)-1):
         rule[i] = unions[i]
-    all_rules = allRules(rule, originalRules)
+
     if d == 1:
+        all_rules = allRules(rule, originalRules)
         if all_rules:
             return rule
         else:
             return False
     if d >=2:
         print('d is >= 2')
-        create = generalizationANDcontradictions(rule,originalRules,otherRules,1/2)
+        create = generalizationANDcontradictions(rule,originalRules,otherRules, 1/2)
         print('create',create)
         if create:
             return create
         else:
             return False
-
-
 
 #--------------------------------------------------------------
 #  True if a rule1 is subset of rule2, False otherwhise
@@ -131,9 +127,8 @@ def contained( rule1, rule2 ):
         return True
     else:
         return False
-    #else:
-    #    return False
-# TESTS
+
+# T E S T S
 #print(contained( [{1},{1},'A'],[{1},{1,2,3},'A']) )
 #True
 #print(  contained( [{2},{7},'D'],[{2,5},{7},'D']   )   )
