@@ -94,7 +94,7 @@ def generalizationANDcontradictions(rule,originalRules,otherRules,ratio):
 #print(generalizationANDcontradictions( [{1,2},{2,3},'a'], originalRules, ratio = 1/2))
 
 #-------------------------------------------------------------
-#    createRules for similarity "count empty intersections"
+#   createRules for similarity "count empty intersections"
 def create_rule(rule1, unions, originalRules, d, otherRules):
     rule = deepcopy(rule1)
     for i in range(len(rule1)-1):
