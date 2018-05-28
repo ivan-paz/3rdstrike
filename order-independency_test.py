@@ -69,7 +69,7 @@ for dataSet in dataSets:
     for i in range(0,10):
         print(i)
         random.shuffle(data)
-        rules = ruleExtraction(data,1)
+        rules = ruleExtraction(data,1,1/2)
         flag = 0
         for rule in rules:
             if rule not in previousRules:

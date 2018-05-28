@@ -19,7 +19,7 @@ def convertPresetSetINTORules(Presets):
 bunch_of_rules = []
 for Presets in setOfPresets:
     Rules = convertPresetSetINTORules(Presets)
-    rules = ruleExtraction(Rules,1)
+    rules = ruleExtraction(Rules,1,1/2)
     bunch_of_rules.append(rules)
 
 thefile = open("Output.txt", "w")

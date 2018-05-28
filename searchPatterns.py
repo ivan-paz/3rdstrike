@@ -95,7 +95,7 @@ def generalizationANDcontradictions(rule,originalRules,otherRules,ratio):
 
 #-------------------------------------------------------------
 #   createRules for similarity "count empty intersections"
-def create_rule(rule1, unions, originalRules, d, otherRules):
+def create_rule(rule1, unions, originalRules, d, otherRules, ratio):
     rule = deepcopy(rule1)
     for i in range(len(rule1)-1):
         rule[i] = unions[i]
@@ -108,7 +108,7 @@ def create_rule(rule1, unions, originalRules, d, otherRules):
             return False
     if d >=2:
         print('d is >= 2')
-        create = generalizationANDcontradictions(rule,originalRules,otherRules, 1/2)
+        create = generalizationANDcontradictions(rule,originalRules,otherRules,ratio)
         print('create',create)
         if create:
             return create
@@ -152,7 +152,7 @@ def deleteRedundant( rules ):#more eficient
     [nonRedundant.append(r) for r in rules if r != None]
     return nonRedundant
 
-def search_patterns(rulesCurrentCategory, d, originalRules,otherRules):
+def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
     newRules = []
     for i in range( 0, len(rulesCurrentCategory) ):
         r1 = rulesCurrentCategory[i]
@@ -160,7 +160,7 @@ def search_patterns(rulesCurrentCategory, d, originalRules,otherRules):
             r2 = rulesCurrentCategory[j]
             [pattern, unions, intersections, indexes] = similarity(r1, r2, d)
             if pattern:
-                rule = create_rule(r1, unions, originalRules, d,otherRules)
+                rule = create_rule(r1, unions, originalRules, d,otherRules,ratio)
                 if rule!=False and rule not in newRules:
                     newRules.append(rule)
 #    print(rulesCurrentCategory,newRules)
@@ -169,14 +169,14 @@ def search_patterns(rulesCurrentCategory, d, originalRules,otherRules):
     rules = deleteRedundant(rulesCurrentCategory)
     return rules
 
-def iterate(rulesCurrentCategory,d,otherRules):
+def iterate(rulesCurrentCategory,d,otherRules,ratio):
     originalRules = deepcopy(rulesCurrentCategory)
     extractedRules = []
-    rules = search_patterns(rulesCurrentCategory, d, originalRules,otherRules)#it'll need here rules other categories to compare with when d >= 2
+    rules = search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio)#it'll need here rules other categories to compare with when d >= 2
     print('rules in the first extraction : ', rules)
     while rules != extractedRules:
         extractedRules = deepcopy(rules)#is the deepcopy needed??
-        rules = search_patterns(extractedRules, d, originalRules,otherRules)
+        rules = search_patterns(extractedRules, d, originalRules,otherRules,ratio)
         print('rules extracted within the while : ', rules)
     return rules
 #iterate([ [{2},{2},'A'], [{4},{2},'A'], [{2},{3},'A'] ], 1)

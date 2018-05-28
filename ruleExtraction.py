@@ -26,19 +26,20 @@ def getCategory(key,dictionary_of_classes):
     return [rules_current_class, rules_other_classes]
 #-----------------------------------------------------------------------------
 #    Main function that controls the process
-def ruleExtraction(Rules,d):
+def ruleExtraction(Rules,d,ratio):
     finalRules = [ ]
     categoriesDict = createCategoriesDict(Rules)
     for category in categoriesDict:
         [rulesCurrentCategory,otherRules] = getCategory(category,categoriesDict)
-        rules = iterate(rulesCurrentCategory,d,otherRules)
+        rules = iterate(rulesCurrentCategory,d,otherRules,ratio)
         [finalRules.append(rule) for rule in rules]
     print('Final set of rules : ')
     print('-----------------------')
     [print(r) for r in finalRules]
     return finalRules
 
-#Test
+#    Quick Tests
+#       d = 1
 #Rules = [
 #[{3}, {3}, {6}, 'a'],
 #[{4}, {3}, {6}, 'a'],
