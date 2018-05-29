@@ -159,6 +159,7 @@ def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
         r1 = rulesCurrentCategory[i]
         for j in range(i+1, len(rulesCurrentCategory)):
             r2 = rulesCurrentCategory[j]
+            print('comparing',r1,r2)
             [pattern, unions, intersections, indexes] = similarity(r1, r2, d)
             if pattern:
                 rule = create_rule(r1, unions, originalRules, d,otherRules,ratio)
@@ -166,7 +167,7 @@ def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
                     newRules.append(rule)
 #    print(rulesCurrentCategory,newRules)
     [rulesCurrentCategory.append(r) for r in newRules]
-    #print('deleting redundant rules . . . . ')
+    print('deleting redundant rules . . . . ')
     rules = deleteRedundant(rulesCurrentCategory)
     return rules
 
