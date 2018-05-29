@@ -100,26 +100,32 @@ Rules = [ #test6
 [{6}, {6}, {3}, "a"],
 [{6}, {3}, {3}, "b"]]
 #-------------------------------------------------------------------------------
-#-     t e s t i n g   d >= 2
+#   t e s t s   d o c u m e n t a t i o n    d = 1
+#Rules = [ [{1},{2},'a'], [{2},{2},'a'],[{2},{3},'a'] ] 
+#d = 1; ratio = 0
+#ruleExtraction(Rules,d,ratio)
+
+
+##-     d o c u m e n t a t i o n    t e s t i n g   d >= 2
 Rules = [ [{1},{2},'a'], [{2},{2},'a'], [{2},{3},'a'], [{1},{3},'b'] ]
-# [{1},{3},'b'] contradicts one rule in [ {1,2}, {2,3}, 'a']
-# So this rule can not be formed
+## [{1},{3},'b'] contradicts one rule in [ {1,2}, {2,3}, 'a']
+## So this rule can not be formed
 d = 2; ratio = 1/2
 ruleExtraction(Rules,d,ratio)
-
-print('--------------- second rules -----------')
-# there are no contradictions for rule [{1,2}, {2,3}, 'a']
-# and ratio = 1/2 i.e at least 2 of 4
-Rules = [ [{1},{2},'a'], [{2},{2},'a'], [{2},{3},'a'] ]
-d = 2; ratio = 1/2
-ruleExtraction(Rules,d,ratio)
-
+#
+#print('--------------- second rules -----------')
+## there are no contradictions for rule [{1,2}, {2,3}, 'a']
+## and ratio = 1/2 i.e at least 2 of 4
+#Rules = [ [{1},{2},'a'], [{2},{2},'a'], [{2},{3},'a'] ]
+#d = 2; ratio = 1/2
+#ruleExtraction(Rules,d,ratio)
+#
 #  I F ratio = 4/5 rule [{1,2},{2,3},'a'] can not be created
 print(' ratio 4/5')
 Rules = [ [{1},{2},'a'], [{2},{2},'a'], [{2},{3},'a'] ]
 d = 2; ratio = 4/5
 ruleExtraction(Rules,d,ratio)
-
+#
 print('------------- third rules ---------------')
 Rules = [ [{1},{2},'a'],  [{2},{3},'a'] ]
 d = 2; ratio = 1/2

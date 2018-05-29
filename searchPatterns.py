@@ -17,7 +17,7 @@ def similarity(rule1,rule2,d):
             difference +=1
             indexes.append(i)
     if difference <= d:
-        print('The difference between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
+        print('The number of empty sets between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
         return [True, unions, intersections, indexes]
     else:
         return [False, None, None, None]
@@ -103,6 +103,7 @@ def create_rule(rule1, unions, originalRules, d, otherRules, ratio):
     if d == 1:
         all_rules = allRules(rule, originalRules)
         if all_rules:
+            print(rule,'has been created')
             return rule
         else:
             return False
