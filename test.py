@@ -126,10 +126,10 @@ ruleExtraction(Rules,d,ratio)
 #d = 2; ratio = 4/5
 #ruleExtraction(Rules,d,ratio)
 ##
-#print('------------- third rules ---------------')
-#Rules = [ [{1},{2},'a'],  [{2},{3},'a'] ]
-#d = 2; ratio = 1/2
-#ruleExtraction(Rules,d,ratio)
+print('------------- third rules ---------------')
+Rules = [ [{1},{2},'a'],[{2},{2},'a'], [{2},{3},'a'],[{1},{3},'b'] ]
+d = 2; ratio = 1/2
+ruleExtraction(Rules,d,ratio)
 
 
 
