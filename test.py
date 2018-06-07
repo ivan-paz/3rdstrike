@@ -101,9 +101,9 @@ Rules = [ #test6
 [{6}, {3}, {3}, "b"]]
 #-------------------------------------------------------------------------------
 #   t e s t s   d o c u m e n t a t i o n    d = 1
-Rules = [ [{1},{2},'a'], [{2},{2},'a'],[{2},{3},'a'] ] 
-d = 1; ratio = 0
-ruleExtraction(Rules,d,ratio)
+#Rules = [ [{1},{2},'a'], [{2},{2},'a'],[{2},{3},'a'] ] 
+#d = 1; ratio = 0
+#ruleExtraction(Rules,d,ratio)
 
 
 ##-     d o c u m e n t a t i o n    t e s t i n g   d >= 2
@@ -126,32 +126,37 @@ ruleExtraction(Rules,d,ratio)
 #d = 2; ratio = 4/5
 #ruleExtraction(Rules,d,ratio)
 ##
-print('------------- third rules ---------------')
-Rules = [ [{1},{2},'a'],[{2},{2},'a'], [{2},{3},'a'],[{1},{3},'b'] ]
-d = 2; ratio = 1/2
-ruleExtraction(Rules,d,ratio)
+#print('------------- third rules ---------------')
+#Rules = [ [{1},{2},'a'],[{2},{2},'a'], [{2},{3},'a'],[{1},{3},'b'] ]
+#d = 2; ratio = 1/2
+#ruleExtraction(Rules,d,ratio)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#----------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------
+#---------------      THIS IS THE DRAFT FOR THE INTERACTIVE ALGORITHM
+#----------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------
+#    draft for the interactive algorithm
+#print(Rules)
+#number_of_parameters = len(Rules[0])
+#ratio = 1/2
+#for d in range(1,number_of_parameters):
+#    print(d)
+#    print(Rules)
+#    rules = ruleExtraction(Rules,d,ratio)
+#    print(rules)
+Rules = [[{1},{1},{3},'a'],[{2},{1},{3},'a'],[{3},{2},{2},'a']]
+print('Rules',Rules)
+d = 1; print('d',d)
+rules = ruleExtraction(Rules,d,1/2)
+print('Rules',Rules)
+print('-----------------------------------')
+print('Rules',Rules)
+d = 2; print('d',d)
+rules = ruleExtraction(Rules,d,1/2)
+#print('rules',rules)
+print('Rules',Rules)
+d = 3; print('d',d)
+rules = ruleExtraction(Rules,d,1/4)
 
