@@ -1,7 +1,8 @@
 from copy import deepcopy
 import itertools
 #-------------------------------------------------------------
-#    similarity count empty intersections            
+#                   dis-similarity function
+#       counts the empty intersections between rule1 and rule2            
 def similarity(rule1,rule2,d):
     unions = []
     intersections = []
@@ -16,6 +17,7 @@ def similarity(rule1,rule2,d):
             difference +=1
             indexes.append(i)
     if difference <= d:
+       # print('The number of empty sets between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
         return [True, unions, intersections, indexes]
     else:
         return [False, None, None, None]
@@ -53,23 +55,69 @@ def allRules(rule, originalRules):
         return True
     else:
         return False
-#-------------------------------------------------------------
-#    createRules for similarity "count empty intersections"
-def create_rule(rule1, unions, originalRules, d):
-    rule = deepcopy(rule1)
-    for i in range(len(rule1)-1):
-        rule[i] = unions[i]
-    all_rules = allRules(rule, originalRules)
-    if all_rules:
+#------------------------------------------
+#
+#               Function
+#    generalizationANDcontradictions
+#             
+#------------------------------------------------------------------
+#    Quick and dirty draft without optimization                ----
+#------------------------------------------------------------------
+def generalizationANDcontradictions(rule,originalRules,otherRules,ratio):
+    expanded = expandRule(rule)
+    #print('rule', rule)
+    #print('expanded', expanded)
+    #print('original rules ', originalRules)
+    #originalRulesCurrentCategory = []
+    #[originalRulesCurrentCategory.append(x) for x in originalRules if x[-1]==rule[-1]]
+    #print(originalRulesCurrentCategory)
+    #originalRulesOtherCategories = []
+    #[originalRulesOtherCategories.append(x) for x in originalRules if x[-1]!=rule[-1]]
+    #print(originalRulesOtherCategories) 
+    # C O N T R A D I C T I O N S
+    for r1 in expanded:
+        if r1!=None:  # I added this if and the one below for the d = 1,2. . . . test 
+            temporalRule =r1[0:-1]
+        for r2 in otherRules:
+            if r2!= None: # I added this if
+                if temporalRule == r2[0:-1]:
+                    return False
+    # G E N E R A L I Z A T I O N
+    numberOfRulesInOriginalRules = 0
+    for r1 in expanded:
+        if r1 in originalRules:
+            numberOfRulesInOriginalRules +=1
+    if (numberOfRulesInOriginalRules/len(expanded)) >= ratio:
+#        print('Enough rules in original rules, returning:',rule)
         return rule
     else:
         return False
-#    if d >=2:
-#        contradiction = contradictions(rule,rules_other_classes)
-#        if contradiction == False:
-#            return rule
-#        else:
-#            return False
+#originalRules = [ [{1},{2},'a'],[{2},{2},'a'],[{2},{3},'a'],[{1},{3},'b'] ]
+#print(generalizationANDcontradictions( [{1,2},{2,3},'a'], originalRules, ratio = 1/2))
+
+#-------------------------------------------------------------
+#   createRules for similarity "count empty intersections"
+def create_rule(rule1, unions, originalRules, d, otherRules, ratio):
+    rule = deepcopy(rule1)
+    for i in range(len(rule1)-1):
+        rule[i] = unions[i]
+
+    if d == 1:
+        all_rules = allRules(rule, originalRules)
+        if all_rules:
+ #           print(rule,'has been created')
+            return rule
+        else:
+            return False
+    if d >=2:
+  #      print('d is >= 2')
+        create = generalizationANDcontradictions(rule,originalRules,otherRules,ratio)
+   #     print('create',create)
+        if create:
+            return create
+        else:
+            return False
+
 #--------------------------------------------------------------
 #  True if a rule1 is subset of rule2, False otherwhise
 def contained( rule1, rule2 ):
@@ -82,31 +130,15 @@ def contained( rule1, rule2 ):
         return True
     else:
         return False
-    #else:
-    #    return False
-# TESTS
+
+# T E S T S
 #print(contained( [{1},{1},'A'],[{1},{1,2,3},'A']) )
 #True
 #print(  contained( [{2},{7},'D'],[{2,5},{7},'D']   )   )
 #True
-#---------------------------------------------------------------
-#def deleteRedundant( rules ):
-#    nonRedundant = []
-#    for i in range(0, len(rules)):
-#        redundant = False
-#        rule1 = rules[i]
-#        for j in range(0, len(rules)):
-#            rule2 = rules[j]
-##            print('rule1 rule2',rule1, rule2)
-#            if rule1 != None and rule2 != None and i != j and contained(rule1,rule2) == True:
-#          #      print(rule1,'contained in', rule2)
-#                redundant = True
-#        if redundant == True:
-#            rules[i] = None
-#    [nonRedundant.append(r) for r in rules if r != None]
-#    return nonRedundant
 #----------------------------------------------------------------
-#    remove redundant rules
+#      Remove   redundant   rules
+#----------------------------------------------------------------
 def deleteRedundant( rules ):#more eficient
     nonRedundant = []
     for i in range(0, len(rules)):
@@ -123,32 +155,33 @@ def deleteRedundant( rules ):#more eficient
     [nonRedundant.append(r) for r in rules if r != None]
     return nonRedundant
 
-def search_patterns(rulesCurrentCategory, d, originalRules):
+def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
     newRules = []
     for i in range( 0, len(rulesCurrentCategory) ):
         r1 = rulesCurrentCategory[i]
         for j in range(i+1, len(rulesCurrentCategory)):
             r2 = rulesCurrentCategory[j]
+#            print('comparing',r1,r2)
             [pattern, unions, intersections, indexes] = similarity(r1, r2, d)
             if pattern:
-                rule = create_rule(r1, unions, originalRules, d)
+                rule = create_rule(r1, unions, originalRules, d,otherRules,ratio)
                 if rule!=False and rule not in newRules:
                     newRules.append(rule)
 #    print(rulesCurrentCategory,newRules)
     [rulesCurrentCategory.append(r) for r in newRules]
-    #print('deleting redundant rules . . . . ')
+#    print('deleting redundant rules . . . . ')
     rules = deleteRedundant(rulesCurrentCategory)
     return rules
 
-def iterate(rulesCurrentCategory,d):
+def iterate(rulesCurrentCategory,d,otherRules,ratio):
     originalRules = deepcopy(rulesCurrentCategory)
     extractedRules = []
-    rules = search_patterns(rulesCurrentCategory, d, originalRules)#it'll need here rules other categories to compare with when d >= 2
-    print('rules in the first extraction : ', rules)
+    rules = search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio)   #it'll need here rules other categories to compare with when d >= 2
+#    print('rules in the first extraction : ', rules)
     while rules != extractedRules:
         extractedRules = deepcopy(rules)#is the deepcopy needed??
-        rules = search_patterns(extractedRules, d, originalRules)
-        print('rules extracted within the while : ', rules)
+        rules = search_patterns(extractedRules, d, originalRules,otherRules,ratio)
+#        print('rules extracted within the while : ', rules)
     return rules
 #iterate([ [{2},{2},'A'], [{4},{2},'A'], [{2},{3},'A'] ], 1)
 

@@ -2,7 +2,36 @@ import copy
 import random
 from ruleExtraction import ruleExtraction 
 
-dataSets = [[ #test5
+dataSets = [
+[ #test1
+[{1},{2}, {6}, 'a'],
+[{6},{5}, {6}, 'a'],
+[{5},{4}, {6}, 'b'],
+[{6},{6}, {6}, 'b'],
+[{5},{3}, {6}, 'b'],
+[{6},{3}, {6}, 'b'],
+[{6},{4}, {6}, 'a'],
+[{4},{5}, {6}, 'b'],
+[{5},{5}, {6}, 'b'],
+[{1},{1}, {6}, 'b'],
+[{4},{1}, {6}, 'b'],
+[{2},{5}, {6}, 'a']],
+[ # test3
+[{2}, {3}, {2}, 'b'],
+[{3}, {2}, {2}, 'b'],
+[{6}, {5}, {2}, 'b'],
+[{4}, {6}, {2}, 'a'],
+[{4}, {2}, {2}, 'a'],
+[{1}, {1}, {2}, 'b'],
+[{5}, {5}, {2}, 'a'],
+[{2}, {2}, {2}, 'b'],
+[{4}, {5}, {2}, 'b'],
+[{2}, {1}, {2}, 'a'],
+[{3}, {4}, {2}, 'a'],
+[{4}, {4}, {2}, 'a'],
+[{3}, {6}, {2}, 'b'],
+[{6}, {6}, {2}, 'a']],
+[ #test5
 [{2}, {3}, {2}, 'a'],
 [{5}, {5}, {2}, 'a'],
 [{4}, {3}, {2}, 'b'],
@@ -40,7 +69,7 @@ for dataSet in dataSets:
     for i in range(0,10):
         print(i)
         random.shuffle(data)
-        rules = ruleExtraction(data,1)
+        rules = ruleExtraction(data,1,1/2)
         flag = 0
         for rule in rules:
             if rule not in previousRules:
@@ -51,4 +80,6 @@ for dataSet in dataSets:
             print('rules', rules)
             break
         previousRules = rules
+    print('dataSet :', dataSet)
+
 
