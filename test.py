@@ -213,8 +213,13 @@ Rules = [
 #----------------------------------------------------------------------
 #		some data to test the fuzzy classifier
 #
-
-
+Rules = [
+	[{5},{2},'a'],
+	[{1},{2},'a'],
+	[{1},{4},'a'],
+	[{5},{4},'a'],
+	[{2},{3},'b']
+]
 #----------------------------------------------------------------------
 
 
@@ -228,7 +233,8 @@ d = 1; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
 rules = ruleExtraction(Rules,d,ratio)
-#print('rules',rules)
+print(' these are the extracted rules: ')
+[print(rule) for rule in rules]
 #print('Rules',Rules)
 #d = 14; print('d',d)
 #rules = ruleExtraction(Rules,d,1/10)
