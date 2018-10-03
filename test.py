@@ -221,7 +221,13 @@ Rules = [
 	[{2},{3},'b']
 ]
 #----------------------------------------------------------------------
-
+Rules = [
+	[{1}, {1}, 'A'],
+	[{1}, {2}, 'A'],
+	[{3}, {1}, 'A'],
+	[{3}, {2}, 'A'],
+	[{1}, {4}, 'A']
+]
 
 #print('Rules',Rules)
 #d = 1; print('d',d)
@@ -229,7 +235,7 @@ Rules = [
 #print('Rules',Rules)
 #print('-----------------------------------')
 #print('Rules',Rules)
-d = 2; ratio = 0; print('d',d, '---', 'ratio',ratio)
+d = 1; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
 rules = ruleExtraction(Rules,d,ratio)
