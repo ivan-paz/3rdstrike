@@ -207,8 +207,21 @@ Rules = [
 [{ 104.56838683546}, {19},             { 0.14215325121246}, '2' ], 
 [{ 149.09506331088}, {19},             { 0.14215325121246}, '2' ], 
 [{ 149.09506331088}, {100},            { 0.14215325121246}, '1' ] 
-
 ]
+
+
+#----------------------------------------------------------------------
+#		some data to test the fuzzy classifier
+#
+Rules = [
+	[{5},{2},'a'],
+	[{1},{2},'a'],
+	[{1},{4},'a'],
+	[{5},{4},'a'],
+	[{2},{3},'b']
+]
+#----------------------------------------------------------------------
+
 
 #print('Rules',Rules)
 #d = 1; print('d',d)
@@ -220,7 +233,8 @@ d = 2; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
 rules = ruleExtraction(Rules,d,ratio)
-#print('rules',rules)
+print(' these are the extracted rules: ')
+[print(rule) for rule in rules]
 #print('Rules',Rules)
 #d = 14; print('d',d)
 #rules = ruleExtraction(Rules,d,1/10)

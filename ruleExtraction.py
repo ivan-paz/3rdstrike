@@ -35,7 +35,7 @@ def ruleExtraction(Rules,d,ratio):
         [finalRules.append(rule) for rule in rules]
     print('Final set of rules : ')
     print('-----------------------')
-    [print(r) for r in finalRules]
+    #[print(r) for r in finalRules]
     return finalRules
 
 #    Quick Tests
