@@ -105,7 +105,7 @@ def create_rule(rule1, unions, originalRules, d, otherRules, ratio):
     if d == 1:
         all_rules = allRules(rule, originalRules)
         if all_rules:
- #           print(rule,'has been created')
+            print(rule,'has been created')
             return rule
         else:
             return False
@@ -167,7 +167,7 @@ def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
                 rule = create_rule(r1, unions, originalRules, d,otherRules,ratio)
                 if rule!=False and rule not in newRules:
                     newRules.append(rule)
-#    print(rulesCurrentCategory,newRules)
+    print(rulesCurrentCategory,newRules)
     [rulesCurrentCategory.append(r) for r in newRules]
 #    print('deleting redundant rules . . . . ')
     rules = deleteRedundant(rulesCurrentCategory)

@@ -229,6 +229,13 @@ Rules = [
 	[{1}, {4}, 'A']
 ]
 
+Rules = [
+	[{1},{2},'A'],
+	[{2},{1},'A'],
+	[{3},{2},'A'],
+	[{2},{2}, 'A']
+]
+
 #print('Rules',Rules)
 #d = 1; print('d',d)
 #rules = ruleExtraction(Rules,d,1/4)
