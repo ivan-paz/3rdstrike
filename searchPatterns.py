@@ -17,7 +17,7 @@ def similarity(rule1,rule2,d):
             difference +=1
             indexes.append(i)
     if difference <= d:
-       # print('The number of empty sets between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
+        print('The number of empty sets between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
         return [True, unions, intersections, indexes]
     else:
         return [False, None, None, None]
@@ -112,7 +112,7 @@ def create_rule(rule1, unions, originalRules, d, otherRules, ratio):
     if d >=2:
   #      print('d is >= 2')
         create = generalizationANDcontradictions(rule,originalRules,otherRules,ratio)
-   #     print('create',create)
+        print('create',create)
         if create:
             return create
         else:
@@ -136,25 +136,39 @@ def contained( rule1, rule2 ):
 #True
 #print(  contained( [{2},{7},'D'],[{2,5},{7},'D']   )   )
 #True
+
 #----------------------------------------------------------------
 #      Remove   redundant   rules
 #----------------------------------------------------------------
+#def deleteRedundant( rules ):#more eficient
+#    nonRedundant = []
+#    for i in range(0, len(rules)):
+#        redundant = False
+#        rule1 = rules[i]
+#        for j in range( i+1, len(rules)):
+#            rule2 = rules[j]
+##            print('rule1 rule2',rule1, rule2)
+#            if rule1 != None and rule2 != None and contained(rule1,rule2) == True:
+#          #      print(rule1,'contained in', rule2)
+#                redundant = True
+#        if redundant == True:
+#            rules[i] = None
+#    [nonRedundant.append(r) for r in rules if r != None]
+#    return nonRedundant
+#   D  E  L  E  T  E    R  E  D  U  N  D  A  N  T    FUNCTION THAT COMPARES R1 WITH R2  AND R2 WITH R1
 def deleteRedundant( rules ):#more eficient
     nonRedundant = []
     for i in range(0, len(rules)):
-        redundant = False
         rule1 = rules[i]
         for j in range( i+1, len(rules)):
             rule2 = rules[j]
-#            print('rule1 rule2',rule1, rule2)
             if rule1 != None and rule2 != None and contained(rule1,rule2) == True:
-          #      print(rule1,'contained in', rule2)
-                redundant = True
-        if redundant == True:
-            rules[i] = None
+                rules[i] = None
+            if rule2 != None and rule1 != None and contained(rule2,rule1) == True:
+                rules[j] = None
     [nonRedundant.append(r) for r in rules if r != None]
     return nonRedundant
-
+#-------------------------------------------------------------------------------------------------------
 def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
     newRules = []
     for i in range( 0, len(rulesCurrentCategory) ):
@@ -167,9 +181,9 @@ def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
                 rule = create_rule(r1, unions, originalRules, d,otherRules,ratio)
                 if rule!=False and rule not in newRules:
                     newRules.append(rule)
-    print(rulesCurrentCategory,newRules)
+    print('previous rules',rulesCurrentCategory,'new created rules',newRules)
     [rulesCurrentCategory.append(r) for r in newRules]
-#    print('deleting redundant rules . . . . ')
+    print('deleting redundant rules . . . . ')
     rules = deleteRedundant(rulesCurrentCategory)
     return rules
 
