@@ -226,15 +226,17 @@ Rules = [
 	[{1}, {2}, 'A'],
 	[{3}, {1}, 'A'],
 	[{3}, {2}, 'A'],
-	[{1}, {4}, 'A']
+	[{1}, {4}, 'A'],
+        [{2}, {2}, 'B']
 ]
 
-Rules = [
-	[{1},{2},'A'],
-	[{2},{1},'A'],
-	[{3},{2},'A'],
-	[{2},{2}, 'A']
-]
+# Example setRulex journal
+#Rules = [
+#	[{1},{2},'A'],
+#	[{2},{1},'A'],
+#	[{3},{2},'A'],
+#	[{2},{2}, 'A']
+#]
 
 #print('Rules',Rules)
 #d = 1; print('d',d)
@@ -242,7 +244,7 @@ Rules = [
 #print('Rules',Rules)
 #print('-----------------------------------')
 #print('Rules',Rules)
-d = 2; ratio = 3/4; print('d',d, '---', 'ratio',ratio)
+d = 1; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
 rules = ruleExtraction(Rules,d,ratio)
