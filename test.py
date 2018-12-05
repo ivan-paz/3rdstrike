@@ -229,6 +229,23 @@ Rules = [
 	[{1}, {4}, 'A'],
         [{2}, {2}, 'B']
 ]
+#
+Rules = [
+#         freq       freq1        amp      mix     room      damp    class
+        [ {120},     {180},       {0.1},  {0.01},  {0.001},  {0.40}, 'before'],
+        [ {121},     {80},        {0.1},  {0.5},   {00.020}, {0.20}, 'before'],
+        [ {60},      {120},       {0.1},  {0.01},  {00.001}, {0.40}, 'before'],
+        [ {121},     {80},        {0.1},  {0.5},   {00.020}, {0.20}, 'before'],
+        [ {80.48},   {80.86},     {0.1},  {0.06},  {00.02},  {8},    'before'],
+        [ {360.45},  {662.02},    {0.1},  {10},    {00.4},   {4},    'before']
+        
+        ]
+
+
+
+
+
+
 
 # Example setRulex journal
 #Rules = [
@@ -244,7 +261,7 @@ Rules = [
 #print('Rules',Rules)
 #print('-----------------------------------')
 #print('Rules',Rules)
-d = 1; ratio = 0; print('d',d, '---', 'ratio',ratio)
+d = 5; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
 rules = ruleExtraction(Rules,d,ratio)
@@ -253,11 +270,4 @@ print(' these are the extracted rules: ')
 #print('Rules',Rules)
 #d = 14; print('d',d)
 #rules = ruleExtraction(Rules,d,1/10)
-
-
-
-
-
-
-
 
