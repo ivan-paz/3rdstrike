@@ -149,7 +149,7 @@ Rules = [ #test6
 #Rules = [[{1},{1},{3},'a'],[{2},{1},{3},'a'],[{3},{2},{2},'a']]
 
 #     Experiment 1 presets tiempos de aguacero
-Rules = [
+Rules_tiempos = [
 [{200},{159},{0.2},{161},{0.4},{160},{0.5},{0.27},{200},{159},{0.01},{150},{0.3},{161},{0.5},{0.001},'intro'],
 [{200},{150},{0.23},{150},{0.3},{160},{0.5},{0.3},{200},{150},{0.01},{150},{0.3},{160},{0.5},{0.01},'intro'],
 [{200},{150},{0.26},{150},{0.3},{160},{0.4},{0.36},{200},{150},{0.001},{150},{0.3},{160},{0.4},{0.01},'intro'],
@@ -264,7 +264,7 @@ Rules = [
 d = 5; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
-rules = ruleExtraction(Rules,d,ratio)
+rules = ruleExtraction(Rules_tiempos,d,ratio)
 print(' these are the extracted rules: ')
 [print(rule) for rule in rules]
 #print('Rules',Rules)
