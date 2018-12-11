@@ -241,6 +241,21 @@ Rules = [
         
         ]
 
+#Ndef(\x)
+#before
+#freq, freq1, \amp, \mix, \room, \damp
+Rules = [
+        [{120},{180}, {0.1}, {0.01},{0.001},{0.40},'before'],
+        [{120},{180},{0.1},{0.01}, {0.001}, {0.02},'before'],
+        [{160},{180},{0.1},{0.01}, {0.001}, {0.02},'before'],
+        #the
+        [{120},{180},     {0.1}, {0.01}, {0.001}, {0.40},'the'],
+        [{60}, {120},     {0.1}, {0.01}, {0.001}, {0.40},'the'],
+        [{80.48},{80.86}, {0.1}, {0.06}, {0.02}, {8},'the'],
+        #rain
+        [{80.48}, {80.86},{0.1}, {0.06},{0.02}, {8},'rain'],
+        [{120},{180},{0.1},{0.01}, {0.001}, {0.40},'rain']
+]
 
 
 
@@ -261,10 +276,10 @@ Rules = [
 #print('Rules',Rules)
 #print('-----------------------------------')
 #print('Rules',Rules)
-d = 5; ratio = 0; print('d',d, '---', 'ratio',ratio)
+d = 7; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
-rules = ruleExtraction(Rules_tiempos,d,ratio)
+rules = ruleExtraction(Rules,d,ratio)
 print(' these are the extracted rules: ')
 [print(rule) for rule in rules]
 #print('Rules',Rules)
