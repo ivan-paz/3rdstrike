@@ -257,6 +257,24 @@ Rules = [
         [{120},    {180},  {0.1}, {0.01}, {0.001}, {0.40}, 'rain']
 ]
 
+x3 = [
+[{200},{159},{0.2}, 'intro'],
+[{200},{150},{0.23},'intro'],
+[{200},{150},{0.26},'intro'],
+[{200},{159},{0.2}, 'intro'],
+
+[{20}, {150},{0.25}, 'main'],
+[{200},{150},{0.28},'main'],
+[{100},{100},{0.25},'main'],
+
+[{100},{100},{0.25},'break'],
+[{440},{880},{0.2}, 'break'],
+
+[{440},{660},{0.2}, 'end'],
+[{220},{440},{0.2}, 'end'],
+[{110},{240},{0.2}, 'end'],
+[{440},{660},{0.2}, 'end']
+]
 
 # Example setRulex journal
 #Rules = [
@@ -272,10 +290,10 @@ Rules = [
 #print('Rules',Rules)
 #print('-----------------------------------')
 #print('Rules',Rules)
-d = 4; ratio = 0; print('d',d, '---', 'ratio',ratio)
+d = 5; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
-rules = ruleExtraction(Rules_tiempos,d,ratio)
+rules = ruleExtraction(x3,d,ratio)
 print(' these are the extracted rules: ')
 [print(rule) for rule in rules]
 #print('Rules',Rules)
