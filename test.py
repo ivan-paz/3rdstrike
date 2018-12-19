@@ -290,7 +290,7 @@ x3 = [
 #print('Rules',Rules)
 #print('-----------------------------------')
 #print('Rules',Rules)
-d = 5; ratio = 0; print('d',d, '---', 'ratio',ratio)
+d = 1; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
 rules = ruleExtraction(x3,d,ratio)
