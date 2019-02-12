@@ -295,9 +295,10 @@ x3 = [
 [{440},{660},{0.2}, 'end'],
 [{220},{440},{0.2}, 'end'],
 [{110},{240},{0.2}, 'end'],
-[{440},{660},{0.2}, 'end']
-]
+[{440},{660},{0.2}, 'end']]
 
+
+Rules = [[{1}, {1}, 'A'], [{3}, {1}, 'A'], [{5}, {1}, 'A'], [{4}, {2}, 'B'], [{1}, {3}, 'A'], [{3}, {3}, 'A'], [{5}, {3}, 'A'], [{4}, {6}, 'B'], [{6}, {3}, 'A']]
 # Example setRulex journal
 #Rules = [
 #	[{1},{2},'A'],
@@ -312,14 +313,14 @@ x3 = [
 #print('Rules',Rules)
 #print('-----------------------------------')
 #print('Rules',Rules)
-d = 2; ratio = 0; print('d',d, '---', 'ratio',ratio)
+d = 1; ratio = 0; print('d',d, '---', 'ratio',ratio)
 #d = 12; ratio = 1/16; print('d',d, '---', 'ratio',ratio)
 #d = 15; ratio = 0; print('d',d, '---', 'ratio',ratio)
-rules = ruleExtraction(rules_before_the_rain,d,ratio)
+rules = ruleExtraction(Rules,d,ratio)
 print(' these are the extracted rules: ')
 [print(rule) for rule in rules]
 print('...................................')
-[print(i) for i in rules_before_the_rain]
+###[print(i) for i in rules_before_the_rain]
 #d = 14; print('d',d)
 #rules = ruleExtraction(Rules,d,1/10)
 
